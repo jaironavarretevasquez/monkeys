@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/css/ratchet.min.css">
+    <link rel="stylesheet" href="/css/ratchet-theme-android.min.css">
+
+    <title>Nuevo</title>
+</head>
+<body>
+    <div style="text-align:center;">
+        <div id="imglogo">
+            <h3>Unirme a la manada</h3>
+            <img src="images/monoface.jpg" width="250" />
+        </div>
+        <form class="input-group" id="formregistro">
+            <div>
+                <input type="text" name="nombreApellido" placeholder="Nombre y Apellido" required>
+            </div>
+            <div>
+                <select id="sex" required>
+                    <option value="">Sexo</option>
+                    <option value="F">Mona</option>
+                    <option value="M">Mono</option>
+                </select>
+            </div>
+            <div>
+                <input type="email" name="email" placeholder="correo@correo.com" required>
+            </div>
+            <div>
+                <input type="password" name="pass" placeholder="Contraseña" required>
+            </div>
+            <div>
+                <input type="password" name="passconfirm" placeholder="Repite Contraseña" required>
+            </div>
+            <div style="text-align:center;">
+                <button class="btn btn-positive" type="submit">Unirme</button>
+                <button class="btn btn-negative" onclick="window.location.href = 'login.html';">Volver</button>
+            </div>
+        </form>
+        <div style="text-align:center; margin-top:10px;">
+            <p style="color:red;font-weight:bold;" id="errormsg">Mensaje de error</p>
+        </div>
+    </div>
+    <script src="/js/ratchet.min.js"></script>
+    <script src="/js/ratchet.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $("#formregistro").submit(function (event) {
+            // Stop form from submitting normally
+            event.preventDefault();
+
+            isError = 0;
+            errorMsg = "";
+            var nombreApellido = $("#nombreApellido").val();
+            var sex = $("#sex").val();
+            var email = $("#email").val();
+            var pwd = $("#pass").val();
+            var pwd2 = $("#passconfirm").val();
+
+            if (!validarPassword(pwd, pwd2)) {
+                isError += 1; errorMsg = errorMsg + "Las contraseñas deben coincidir";
+            }
+
+            if (sex.length < 0) {
+                isError += 1; errorMsg = errorMsg + "Indica tu sexo";
+            }
+
+            if (isError > 0) {
+                document.getElementById("errormsg").innerText = errorMsg;
+            } else {
+                $.ajax({
+                    url: 'http://pachancho.cl/monkey/mobile.php',
+                    type: 'POST',
+                    data: {
+                        'hdnOperation': "registro",
+                        'email': email,
+                        'nombreApellido': nombreApellido,
+                        'sexo': sex,
+                        'pass': pwd
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var mensaje = data.Mensaje;
+                        if (mensaje == "Registro Exitoso") {
+                            alert(mensaje + "Ya puede iniciar sesion!");
+                            window.location.href = 'login.html';
+                        }
+                    }
+                });
+            }
+
+        });
+
+        function validarPassword(pwd1, pwd2) {
+            if (pwd1 == pwd2) return true;
+            return false;
+        };
+    </script>
+</body>
+</html>

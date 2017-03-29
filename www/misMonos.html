@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/css/ratchet.min.css">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript">
+        // Check browser support
+        if (typeof (Storage) !== "undefined") {
+            // Retrieve
+            var sesion = window.localStorage.getItem("sesion");
+            if (sesion !== "activa") {
+                window.location.href = 'login.html';
+            }
+        } else {
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+        }
+    </script>
+</head>
+<body>
+    <header class="bar bar-nav">
+        <h1 class="title">Mis Monos</h1>
+    </header>
+    <div class="content">
+
+        <div class="segmented-control">
+            <a class="control-item" href="#item1mobile">Agregar</a>
+            <a class="control-item" href="#item2mobile">Kill</a>
+            <a class="control-item" href="#item3mobile">
+                Thing three
+            </a>
+        </div>
+        <div class="card">
+            <span id="item1mobile" class="control-content active">Item 1</span>
+            <span id="item2mobile" class="control-content">Item 2</span>
+            <span id="item3mobile" class="control-content">Item 3</span>
+        </div>
+
+        <div id="default">
+            
+        </div>
+        
+
+        <div id="add" style="display:none;">
+            <h3>Agregar un nuevo mono a mi jaula</h3>
+            <form>
+                <input type="email" placeholder="email@email.com">
+                <button class="btn btn-positive btn-block">Agregar</button>
+            </form>
+        </div>
+        
+        <div id="kill" style="display:none;">
+            <h3>Agregar un nuevo mono a mi jaula</h3>
+            <table>
+                <tr>
+                    <td>Mono</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Jairo</td>
+                    <td>
+                        <button class="btn btn-negative"><span class="icon icon-search"></span></button>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+
+
+
+        <!--NAV MENU-->
+        <nav class="bar bar-tab">
+            <a class="tab-item" href="index.html">
+                <span class="icon icon-home"></span>
+                <span class="tab-label">Home</span>
+            </a>
+            <a class="tab-item active" href="misMonos.html">
+                <span class="icon icon-person"></span>
+                <span class="tab-label">Mis Monos</span>
+            </a>
+            <a class="tab-item" href="premioCastigo.html">
+                <span class="icon icon-star-filled"></span>
+                <span class="tab-label">Premio / Castigo</span>
+            </a>
+            <a class="tab-item" href="#">
+                <span class="icon icon-gear"></span>
+                <span class="tab-label">Settings</span>
+            </a>
+        </nav>
+    </div>
+    <script src="/js/ratchet.min.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,29 @@
+﻿<html>
+<head>
+    <title>Contact Example</title>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+</head>
+<body>
+    <h1>Example</h1>
+    <p id="p1">localStorage</p>
+    <script type="text/javascript">
+
+        // Wait for PhoneGap to load
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // PhoneGap is ready
+        function onDeviceReady() {
+            window.localStorage.setItem("key", "este es un texto de sesion");
+            // keyname is now equal to "key"
+            var value = window.localStorage.getItem("key");
+            // value is now equal to "value"
+            //window.localStorage.removeItem("key");
+            //window.localStorage.clear();
+            // localStorage is now empty
+            $("p#p1").text(value);
+        }
+
+
+    </script>
+</body>
+</html>
